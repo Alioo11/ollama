@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 
 # Download and install Ollama
 # Adjust the URL to point to the correct location if Ollama provides one
-RUN curl -O https://ollama.com/download/ollama-installer-linux && \
+RUN curl -O https://ollama.com/install.sh && \
     chmod +x ollama-installer-linux && \
     /bin/bash ./ollama-installer-linux
 

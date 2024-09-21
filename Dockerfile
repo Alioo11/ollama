@@ -13,33 +13,33 @@ RUN apt-get update && apt-get install -y \
     bash \
     && rm -rf /var/lib/apt/lists/*
 
-# Download and install Ollama
-# Adjust the URL to point to the correct location if Ollama provides one
-# RUN curl -O https://ollama.com/install.sh && \
-#     chmod +x ollama-installer-linux && \
-#     /bin/bash ./ollama-installer-linux
+# # Download and install Ollama
+# # Adjust the URL to point to the correct location if Ollama provides one
+# # RUN curl -O https://ollama.com/install.sh && \
+# #     chmod +x ollama-installer-linux && \
+# #     /bin/bash ./ollama-installer-linux
 
-RUN curl -fsSL https://ollama.com/install.sh | sh
+# RUN curl -fsSL https://ollama.com/install.sh | sh
 
 
-# Add Ollama to PATH (if necessary, adjust based on install location)
-ENV PATH="/usr/local/bin/ollama:$PATH"
+# # Add Ollama to PATH (if necessary, adjust based on install location)
+# ENV PATH="/usr/local/bin/ollama:$PATH"
 
-# Pull a specific LLM model using the Ollama CLI
-# Replace `llama2` with the actual name of the LLM model you want to pull
-RUN ollama pull llama2
+# # Pull a specific LLM model using the Ollama CLI
+# # Replace `llama2` with the actual name of the LLM model you want to pull
+# RUN ollama pull llama2
 
-# Set working directory
-WORKDIR /app
+# # Set working directory
+# WORKDIR /app
 
-# Copy your project files to the container
-COPY . /app
+# # Copy your project files to the container
+# COPY . /app
 
-# Expose the port that Ollama will use to serve the model, if applicable
-EXPOSE 11434
+# # Expose the port that Ollama will use to serve the model, if applicable
+# EXPOSE 11434
 
-# Define the entry point for the container
-CMD ["ollama", "serve"]
+# # Define the entry point for the container
+# CMD ["ollama", "serve"]
 
 # # Use an official Python runtime as a parent image
 # FROM python:3.9-slim

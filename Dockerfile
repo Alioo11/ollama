@@ -1,4 +1,3 @@
-
 # Use an official Ubuntu as the base image
 FROM ubuntu:20.04
 
@@ -11,19 +10,20 @@ RUN apt-get update && apt-get install -y \
     sudo \
     unzip \
     ca-certificates \
+    bash \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install Ollama
 # Adjust the URL to point to the correct location if Ollama provides one
 RUN curl -O https://ollama.com/download/ollama-installer-linux && \
     chmod +x ollama-installer-linux && \
-    ./ollama-installer-linux
+    /bin/bash ./ollama-installer-linux
 
 # Add Ollama to PATH (if necessary, adjust based on install location)
 ENV PATH="/usr/local/bin/ollama:$PATH"
 
 # Pull a specific LLM model using the Ollama CLI
-# Replace `model-name` with the actual name of the LLM model you want to pull
+# Replace `llama2` with the actual name of the LLM model you want to pull
 RUN ollama pull llama2
 
 # Set working directory
@@ -36,7 +36,6 @@ COPY . /app
 EXPOSE 11434
 
 # Define the entry point for the container
-# Assuming Ollama runs a server or needs to be invoked via CLI
 CMD ["ollama", "serve"]
 
 # # Use an official Python runtime as a parent image

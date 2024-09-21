@@ -13,11 +13,12 @@ RUN apt-get update && apt-get install -y \
     bash \
     && rm -rf /var/lib/apt/lists/*
 
-# # Download and install Ollama
-# # Adjust the URL to point to the correct location if Ollama provides one
-# # RUN curl -O https://ollama.com/install.sh && \
-# #     chmod +x ollama-installer-linux && \
-# #     /bin/bash ./ollama-installer-linux
+# Dummy run command (e.g., an infinite loop)
+CMD ["bash", "-c", "while true; do sleep 30; done"]
+
+# RUN curl -O https://ollama.com/install.sh && \
+#     chmod +x ollama-installer-linux && \
+#     /bin/bash ./ollama-installer-linux
 
 # RUN curl -fsSL https://ollama.com/install.sh | sh
 

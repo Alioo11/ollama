@@ -1,27 +1,30 @@
-# Use an official Ubuntu as the base image
-FROM ubuntu:20.04
+FROM ollama/ollama:latest
 
-# Set environment variables to avoid prompts during installations
-ENV DEBIAN_FRONTEND=noninteractive
+WORKDIR /app
 
-# Install necessary dependencies
-RUN apt-get update && apt-get install -y \
-    curl \
-    sudo \
-    unzip \
-    ca-certificates \
-    bash \
-    && rm -rf /var/lib/apt/lists/*
+RUN ollama pull ollama2
 
-# Dummy run command (e.g., an infinite loop)
-CMD ["bash", "-c", "while true; do sleep 30; done"]
+CMD ["ollama", "serve"]
 
-# RUN curl -O https://ollama.com/install.sh && \
+# FROM ubuntu:22.04
+
+# # Set environment variables to avoid prompts during installations
+# ENV DEBIAN_FRONTEND=noninteractive
+
+# # Install necessary dependencies
+# RUN apt-get update && apt-get install -y \
+#     curl \
+#     sudo \
+#     unzip \
+#     ca-certificates \
+#     bash \
+#     && rm -rf /var/lib/apt/lists/*
+
+# # Download and install Ollama
+# # Adjust the URL to point to the correct location if Ollama provides one
+# RUN curl -O https://ollama.com/download/ollama-installer-linux && \
 #     chmod +x ollama-installer-linux && \
 #     /bin/bash ./ollama-installer-linux
-
-# RUN curl -fsSL https://ollama.com/install.sh | sh
-
 
 # # Add Ollama to PATH (if necessary, adjust based on install location)
 # ENV PATH="/usr/local/bin/ollama:$PATH"
@@ -41,7 +44,6 @@ CMD ["bash", "-c", "while true; do sleep 30; done"]
 
 # # Define the entry point for the container
 # CMD ["ollama", "serve"]
-
 # # Use an official Python runtime as a parent image
 # FROM python:3.9-slim
 

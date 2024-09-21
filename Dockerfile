@@ -1,6 +1,9 @@
 FROM ollama/ollama:latest
 
+
 WORKDIR /app
+
+RUN ollama serve
 
 RUN ollama pull ollama2
 

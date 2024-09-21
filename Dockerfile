@@ -5,9 +5,8 @@ FROM python:3.9-slim
 RUN apt-get update && apt-get install -y curl unzip
 
 # Install Ollama CLI
-RUN curl -o ollama-installer.sh https://ollama.com/download.sh && \
-    bash ollama-installer.sh && \
-    mv ollama /usr/local/bin/ollama
+RUN curl -fsSL https://ollama.com/install.sh | sh
+
 
 # Install Flask for REST API
 RUN pip install flask
